@@ -8,10 +8,9 @@ RUN set -euxo pipefail \
   && sed -ri \
   -e 's!^[#[:space:]]*(path.data:)[[:space:]]+.*$!\1 /var/lib/elasticsearch !i' \
   -e 's!^[#[:space:]]*(path.logs:)[[:space:]]+.*$!\1 /var/log/elasticsearch !i' \
+  -e 's!^[#[:space:]]*(network.host:)[[:space:]]+.*$!\1 0.0.0.0 !i' \
   /etc/elasticsearch/elasticsearch.yml
 
 ENV ES_PATH_CONF=/etc/elasticsearch
-
-WORKDIR /usr/share/java/elasticsearch
 EXPOSE 9200 9300
 CMD ["agrozyme.elasticsearch.command.sh"]
